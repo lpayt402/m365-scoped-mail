@@ -1,8 +1,8 @@
 # Developer handoff
 
-The current version is easy to try without a tenant: it is a mock sender plus a
-read-only Exchange validator. The goal I'm exploring is one approved mailbox per
-customer, with Exchange enforcing that permission boundary.
+The mock CLI can run without a tenant. The read-only Exchange validator requires
+an existing connected Exchange session. The goal I'm exploring is one approved
+mailbox per customer, with Exchange enforcing that permission boundary.
 
 ## What is ready
 

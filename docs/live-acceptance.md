@@ -2,7 +2,9 @@
 
 The local demo cannot show whether Microsoft 365 will allow the approved mailbox
 and deny every other one. This checklist describes the evidence I'd want before
-adding a live sending path or marking a customer active. None of the listed test
+adding a live sending path or marking a customer active.
+
+This is a plan for a later, explicitly approved test. None of the listed test
 resources has been provisioned, granted, connected, or used. Use a dedicated test
 application, existing test tenants, controlled recipients, and synthetic message
 content.

@@ -10,7 +10,7 @@ It's a hobby project and a work in progress, independent of Microsoft and withou
 
 The sender is a local .NET mock. The CLI accepts only synthetic customer records, checks the tenant and sender in application code, builds a Graph-shaped request, and records a safe result. Local mock providers exercise duplicate suppression and recovery. There is no live token provider, Graph transport, HTTP service, or credential access.
 
-A separate PowerShell validator reads an existing Exchange Online session. It does not connect, provision objects, grant roles, inspect Entra application grants, or send email. A passing result means only that the Exchange responses matched the requested checks at that time.
+A separate PowerShell validator reads an existing Exchange Online session. It does not connect, provision objects, grant roles, inspect Entra application grants, or send email. Its success means only that the narrow Exchange responses matched the requested checks at that time.
 
 I haven't tested this against a real tenant. `securityModelProven` remains `false`; Entra review, Graph positive and negative sends, cross-tenant behavior, and revocation are all **NotRun**. Synthetic tests check local code paths, not Microsoft's live authorization behavior.
 

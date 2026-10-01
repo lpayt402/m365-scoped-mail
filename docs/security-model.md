@@ -29,11 +29,11 @@ one-mailbox checks at that moment.
 | Credential or message leakage | Synthetic token only; audit omits recipients/content; raw provider errors suppressed | Real token validation, credential lifetime and storage review |
 | Sending abuse | Mock core bounds recipients/PDF/text, persists rate/circuit limits and duplicate protection | Authenticated caller context, durable multi-host state, retention |
 
-The validator is a read-only administrator aid. Its results depend on the
-administrator being able to see the full recipient set and relevant application
-role assignments, and tenant data can change between reads. Synthetic tests show
-how the code responds to fixtures; they do not establish Microsoft 365's live
-authorization behavior.
+The validator is a read-only administrator aid, not an enforcement service. Its
+results depend on the administrator being able to see the full recipient set and
+relevant application role assignments, and tenant data can change between reads.
+Synthetic tests show how the code responds to fixtures; they do not establish
+Microsoft 365's live authorization behavior.
 
 There is no onboarding/offboarding, identity bootstrap, live application
 authentication, or real sending here. Those need tenant authorization and a

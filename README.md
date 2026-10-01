@@ -2,9 +2,9 @@
 
 **Least-privilege application email for Microsoft 365**
 
-I figured it was about time to share some of the things I've been working on in my spare time. This started with a question I wanted to figure out: how can a small service send routine mail from one approved Microsoft 365 mailbox without getting access to every mailbox in a tenant?
+I wanted to understand what it takes for a small service to send routine mail from one approved Microsoft 365 mailbox without needing access to every mailbox in a tenant. I'm looking at Exchange Application RBAC alongside Entra grants to see how the permissions work together. The intended design uses an application identity without customer passwords or an employee's refresh token.
 
-I'm using this project to understand how Microsoft 365 permissions and access rights fit together, especially Exchange Application RBAC and the separate Entra grants that can widen access. The design is still an exercise. It uses an application identity without customer passwords or an employee's refresh token. This is an independent hobby project, not affiliated with, endorsed by, or certified by Microsoft.
+This is an independent hobby project, not affiliated with, endorsed by, or certified by Microsoft.
 
 ## What works today
 
