@@ -1,9 +1,8 @@
 # Developer handoff
 
-The first implementation is deliberately runnable without a tenant. Please keep
-the mock CLI as the safe default while adding live adapters as a separate, reviewed
-increment. The actual goal is one approved mailbox per customer, with Exchange
-enforcing the final permission boundary.
+The current version is easy to try without a tenant: it is a mock sender plus a
+read-only Exchange validator. The goal I'm exploring is one approved mailbox per
+customer, with Exchange enforcing that permission boundary.
 
 ## What is ready
 
@@ -56,10 +55,10 @@ evidence. Neither is a safe instruction to blindly send again. Result categories
 are suitable for a caller’s decision; raw provider exception text is suppressed.
 
 The CLI requires `SyntheticOnly` registry entries and reports `mode: Mock` and
-`securityModelProven: false`. It has no switch to turn on real mail. A future live
-entry point must verify a customer’s actual evidence and obtain customer context
-from a trusted caller identity. A customer ID in an unauthenticated request would
-not be sufficient for a hosted service.
+`securityModelProven: false`. It cannot send real mail. A future live entry point
+would need to check a customer's evidence and get customer context from a trusted
+caller identity. A customer ID in an unauthenticated request is not enough for a
+hosted service.
 
 ## Next implementation
 

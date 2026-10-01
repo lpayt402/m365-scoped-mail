@@ -1,13 +1,11 @@
 # Live acceptance: not run
 
-The local demo is ready for review. It does not establish that Microsoft 365 will
-allow the approved mailbox and deny every other mailbox. I want that evidence
-before adding a live sending path or marking a customer active.
-
-This is a checklist for a later, explicitly approved test. Nothing here has been
-provisioned, granted, connected, or sent. Keep customer administration in a
-dedicated window and use a dedicated test application, existing test tenants,
-controlled recipients, and synthetic message content.
+The local demo cannot show whether Microsoft 365 will allow the approved mailbox
+and deny every other one. This checklist describes the evidence I'd want before
+adding a live sending path or marking a customer active. None of the listed test
+resources has been provisioned, granted, connected, or used. Use a dedicated test
+application, existing test tenants, controlled recipients, and synthetic message
+content.
 
 ## Inputs and people
 
@@ -84,5 +82,5 @@ Graph denial from the cmdlet or blindly retry real mail while waiting.
 | Real two-customer token/Graph isolation | NotRun |
 | Revocation followed by denied Graph request | NotRun |
 
-The next live work requires those concrete inputs and explicit permission. This
-repository cannot grant that permission, and local green tests cannot replace it.
+Live testing needs the inputs above and explicit permission. Passing local tests
+cannot replace that evidence.

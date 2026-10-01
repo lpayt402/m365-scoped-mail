@@ -2,17 +2,17 @@
 
 ## Purpose
 
-M365 Scoped Mail explores how a small service could send routine messages from one approved Microsoft 365 mailbox per customer. The intended authorization boundary is Exchange Online Application RBAC. The project aims to avoid customer passwords, employee refresh tokens, and unnecessarily broad mailbox access.
+I started this as a way to understand what least privilege means for a service sending routine messages from one approved Microsoft 365 mailbox per customer. I'm working through how the permissions fit together, with Exchange Online Application RBAC as the intended boundary. The design aims to avoid customer passwords, employee refresh tokens, and unnecessarily broad mailbox access.
 
-This is a hobby project and a work in progress. It is independent of Microsoft and has no Microsoft endorsement or certification.
+It's a hobby project and a work in progress, independent of Microsoft and without Microsoft endorsement or certification.
 
 ## Current state
 
-The implemented sender is a local .NET mock. The CLI accepts only synthetic customer records, applies application-level tenant and sender checks, builds a Graph-shaped request, and records a safe result. It exercises duplicate suppression and recovery behavior against local mock providers. It has no live token provider, Graph transport, HTTP service, or credential access.
+The sender is a local .NET mock. The CLI accepts only synthetic customer records, checks the tenant and sender in application code, builds a Graph-shaped request, and records a safe result. Local mock providers exercise duplicate suppression and recovery. There is no live token provider, Graph transport, HTTP service, or credential access.
 
-A separate PowerShell validator performs read-only checks in an existing Exchange Online session. It does not connect, provision objects, grant roles, inspect Entra application grants, or send email. Its success means only that the narrow Exchange responses matched the requested checks at that time.
+A separate PowerShell validator reads an existing Exchange Online session. It does not connect, provision objects, grant roles, inspect Entra application grants, or send email. A passing result means only that the Exchange responses matched the requested checks at that time.
 
-No real-tenant behavior has been tested. `securityModelProven` remains `false`; Entra review, Graph positive and negative sends, cross-tenant behavior, and revocation are all **NotRun**. Local synthetic tests are useful for checking code paths but cannot prove Microsoft's live authorization behavior.
+I haven't tested this against a real tenant. `securityModelProven` remains `false`; Entra review, Graph positive and negative sends, cross-tenant behavior, and revocation are all **NotRun**. Synthetic tests check local code paths, not Microsoft's live authorization behavior.
 
 ## Authorization rule to preserve
 
