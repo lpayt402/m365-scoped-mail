@@ -1,0 +1,8 @@
+{
+  "customer": "acme",
+  "from": "invoices@contoso.example",
+  "to": ["receiving@acme.example"],
+  "subject": "Customer binding demonstration",
+  "text": "This fictional customer/mailbox combination must be rejected locally.",
+  "idempotencyKey": "acme-denied-contoso"
+}

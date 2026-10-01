@@ -1,0 +1,8 @@
+{
+  "customer": "acme",
+  "from": "ceo@acme.example",
+  "to": ["receiving@acme.example"],
+  "subject": "Scope denial demonstration",
+  "text": "This fictional request must be rejected before token acquisition.",
+  "idempotencyKey": "acme-denied-ceo"
+}

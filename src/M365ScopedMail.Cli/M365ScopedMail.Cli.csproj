@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><AssemblyName>m365scopedmail</AssemblyName></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../M365ScopedMail.Core/M365ScopedMail.Core.csproj" /></ItemGroup>
+</Project>

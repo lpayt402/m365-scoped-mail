@@ -1,0 +1,22 @@
+# Local tenant material and credentials
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+local/
+reports/
+# Editor and worktree files
+.vscode/
+.idea/
+.worktrees/
+worktrees/
+# .NET build output and local demo packages
+**/bin/
+**/obj/
+artifacts/
+.dotnet/
+TestResults/
