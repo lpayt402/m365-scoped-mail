@@ -1,9 +1,9 @@
 # Architecture
 
-I chose .NET 10 for the first local sender and PowerShell for Exchange checks. It
-keeps the Windows workflow small and makes the send logic usable from a future
-API without adding hosting now. .NET 10 is an LTS release; maintainers still need
-to rebuild packaged demos when its bundled runtime is patched.
+I chose .NET 10 for a small local sender and PowerShell for the Exchange checks.
+That keeps the Windows workflow simple and leaves the send logic usable from a
+future API; there is no hosting here yet. .NET 10 is an LTS release, so packaged
+demos still need a rebuild when its bundled runtime is patched.
 [.NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core)
 
 ```mermaid

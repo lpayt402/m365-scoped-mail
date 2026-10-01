@@ -2,11 +2,13 @@
 
 **Least-privilege application email for Microsoft 365**
 
-M365 Scoped Mail is an independent hobby project exploring unattended service-generated email from one approved Microsoft 365 mailbox. The intended design uses an application identity and Exchange Application RBAC, without customer passwords or an employee's refresh token. This project is not affiliated with, endorsed by, or certified by Microsoft.
+I wanted to understand what it takes for a small service to send routine mail from one approved Microsoft 365 mailbox without needing access to every mailbox in a tenant. I'm looking at Exchange Application RBAC alongside Entra grants to see how the permissions work together. The intended design uses an application identity without customer passwords or an employee's refresh token.
+
+This is an independent hobby project, not affiliated with, endorsed by, or certified by Microsoft.
 
 ## What works today
 
-The repository contains a local mock sender and a read-only Exchange validator. The mock exercises input checks, tenant/mailbox binding, duplicate suppression, failure recovery, and privacy-conscious audit output. It never signs in or sends mail. The validator can inspect an already connected Exchange session; it does not sign in, change permissions, or send a message.
+Right now, the project has a local mock sender and a read-only Exchange validator. The mock covers input checks, tenant/mailbox binding, duplicate suppression, failure recovery, and privacy-conscious audit output. It never signs in or sends mail. The validator reads an existing Exchange session; it does not sign in, change permissions, or send a message.
 
 There is no credential or token adapter, Microsoft Graph transport, customer onboarding/offboarding workflow, hosted service, or live authorization proof. Every real-tenant check remains **NotRun**, and the program reports `securityModelProven: false`. Treat the code as a learning and review project, not a production mail service.
 

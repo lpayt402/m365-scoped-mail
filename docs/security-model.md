@@ -1,16 +1,17 @@
 # Current security boundary
 
-The intended sending boundary is Exchange Online Application RBAC, with
-`Application Mail.Send` assigned to an explicit mailbox scope. Application-level
-tenant/mailbox binding is also enforced in the local mock core. That check is
-separate from Microsoft 365's real permission boundary.
+The part I'm trying to get right is the gap between what the app checks and what
+Microsoft authorizes. The intended sending boundary is Exchange Online Application
+RBAC, with `Application Mail.Send` assigned to an explicit mailbox scope. The local
+mock core also checks tenant/mailbox bindings, but that is application logic, not
+Microsoft 365's permission boundary.
 
-Microsoft documents Entra grants and Exchange RBAC grants as additive. A parallel
-unrestricted Entra `Mail.Send` grant can bypass the intended mailbox restriction.
-The Exchange authorization test does not evaluate those Entra grants. It also
-bypasses the live permission cache; Microsoft describes a 30-minute to two-hour
-cache window. A cmdlet's out-of-scope result alone does not prove Graph will deny a
-send. [Microsoft's Application RBAC guidance](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac)
+Microsoft documents Entra and Exchange RBAC grants as additive. An unrestricted
+Entra `Mail.Send` grant can bypass the intended mailbox restriction. The Exchange
+authorization test does not inspect Entra grants and bypasses the live permission
+cache, which Microsoft says can last 30 minutes to two hours. An out-of-scope
+cmdlet result alone does not prove Graph will deny a send. [Microsoft's Application
+RBAC guidance](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac)
 
 The validator therefore always reports `SecurityModelProven = false`, with Entra
 review and Graph send tests marked `NotRun`. It never activates a customer. Its
@@ -28,21 +29,21 @@ one-mailbox checks at that moment.
 | Credential or message leakage | Synthetic token only; audit omits recipients/content; raw provider errors suppressed | Real token validation, credential lifetime and storage review |
 | Sending abuse | Mock core bounds recipients/PDF/text, persists rate/circuit limits and duplicate protection | Authenticated caller context, durable multi-host state, retention |
 
-The validator is a read-only administrator aid, not an enforcement service.
-Administrator visibility can itself be limited: an administrator must be able to
-inspect the complete recipient set and all relevant application role assignments.
-Data can change between reads. Synthetic tests prove the code's decisions against
-fixtures, not Microsoft 365's live authorization behavior.
+The validator is a read-only administrator aid, not an enforcement service. Its
+results depend on the administrator being able to see the full recipient set and
+relevant application role assignments, and tenant data can change between reads.
+Synthetic tests show how the code responds to fixtures; they do not establish
+Microsoft 365's live authorization behavior.
 
-No onboarding/offboarding mutation, identity bootstrap, live application authentication,
-or real sending is implemented here. Those are separate work requiring explicit
-tenant authorization and a verified revocation workflow. See the
+There is no onboarding/offboarding, identity bootstrap, live application
+authentication, or real sending here. Those need tenant authorization and a
+verified revocation workflow. See the
 [live acceptance checklist](live-acceptance.md).
 
-The CLI accepts only synthetic registry entries and constructs only mock providers.
-The reusable interfaces are extension points, not proof that any future adapter is
-safe. Registry and state files are trusted local operator inputs. Fingerprints
-detect changed requests against intact state; they are not a signature, and an
-operator can edit/delete state. Store access control, backup and retention need
-review before unattended use. A hosted service will also need a trusted caller
-identity before selecting a customer.
+The CLI accepts only synthetic registry entries and constructs mock providers.
+Its interfaces are extension points, not proof that a future adapter is safe.
+Registry and state files are trusted local inputs. Fingerprints detect changed
+requests when state is intact; they are not signatures, and an operator can edit
+or delete the state. Access control, backup, and retention need review before
+unattended use. A hosted service also needs a trusted caller identity to select a
+customer.

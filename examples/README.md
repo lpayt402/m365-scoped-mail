@@ -1,7 +1,8 @@
 # Local examples
 
-All customers, identifiers, addresses, and invoice details here are fictional.
-Every CLI command uses the mock transport. No connection or mail delivery occurs.
+These examples use fictional customers, identifiers, addresses, and invoice
+details. Every command uses the mock transport, so nothing connects to Microsoft
+365 or delivers mail.
 
 From the repository root, after `scripts/demo.ps1` has built the CLI:
 
