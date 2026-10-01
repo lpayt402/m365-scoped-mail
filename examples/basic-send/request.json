@@ -1,0 +1,8 @@
+{
+  "customer": "acme",
+  "from": "billing@acme.example",
+  "to": ["receiving@acme.example"],
+  "subject": "Sample invoice 10042",
+  "text": "This is a fictional M365ScopedMail demo. No message is sent.",
+  "idempotencyKey": "acme-demo-10042"
+}

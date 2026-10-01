@@ -1,0 +1,2 @@
+# Keep PDF byte offsets and embedded base64 fixtures stable on Windows checkouts.
+*.pdf binary
