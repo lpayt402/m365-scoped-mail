@@ -12,6 +12,21 @@ Right now, the project has a local mock sender and a read-only Exchange validato
 
 There is no credential or token adapter, Microsoft Graph transport, customer onboarding/offboarding workflow, hosted service, or live authorization proof. Every real-tenant check remains **NotRun**, and the program reports `securityModelProven: false`. Treat the code as a learning and review project, not a production mail service.
 
+## Current paths
+
+The code has two separate local checks. Neither demonstrates live mail authorization or sending.
+
+```text
+Mock sender
+Request JSON --> Input and customer checks --> Mock state and providers
+                                               |
+                                               v
+                                  Result and safe audit record
+
+Read-only Exchange validation
+Existing Exchange session --> Read-only validator --> Validation result
+```
+
 ## Try the local demo
 
 On Windows, install the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0), open PowerShell in this folder, and run:
